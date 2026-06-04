@@ -6,7 +6,7 @@ class Cargo{
         $this->db = Database::getConnection();
     }
     public function obtenerCargos():array {
-        $sql = "SELECT id_cargo, nombre_cargo FROM cargo"; 
+        $sql = "SELECT IDcategoria, nombre_categoria FROM categoria"; 
         $stmt = $this->db->prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll();
