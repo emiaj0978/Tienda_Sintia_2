@@ -48,8 +48,8 @@
                         <label for="cargo">Cargo</label>
                         <select name="cargo"> 
                             <?php foreach ($lista_cargo as $cargitos): ?>
-                                    <option value="<?php echo ($cargitos['id_cargo']) ?>">
-                                        <?php echo ($cargitos['nombre_cargo']); ?>
+                                    <option value="<?php echo ($cargitos['IDcategoria']) ?>">
+                                        <?php echo ($cargitos['nombre_categoria']); ?>
                                     </option>
                             <?php endforeach; ?>
                         </select>
