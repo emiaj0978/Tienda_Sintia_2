@@ -7,7 +7,6 @@ document.addEventListener('DOMContentLoaded', function() {
     dropbtns.forEach(function(btn) {
         btn.addEventListener('click', function(e) {
             e.preventDefault(); // Evitar que recargue la página
-            
             // Encontrar el li padre con clase 'dropdown'
             const dropdown = this.closest('.dropdown');
             
@@ -19,15 +18,15 @@ document.addEventListener('DOMContentLoaded', function() {
     // =============== esto lo puedes borrar, es para cerrar el dropdown si se hace clic fuera de él  ===============
     // YO LE COMENTE PERO SI DESEAS LE PUEDES DESCOMENTAR
     // Cerrar dropdown si se hace clic fuera ("opcional")  
-    // document.addEventListener('click', function(e) {
+    document.addEventListener('click', function(e) {
     //     // Si el click NO es dentro de un dropdown
-    //     if (!e.target.closest('.sidebar .dropdown')) {
+         if (!e.target.closest('.sidebar .dropdown')) {
     //         // Cerrar todos los dropdowns
-    //         const dropdowns = document.querySelectorAll('.sidebar .dropdown');
-    //         dropdowns.forEach(function(dropdown) {
-    //             dropdown.classList.remove('show');
-    //         });
-    //     }
-    // });
+            const dropdowns = document.querySelectorAll('.sidebar .dropdown');
+            dropdowns.forEach(function(dropdown) {
+                dropdown.classList.remove('show');
+            });
+        }
+     });
     // ==============================================================================================================
 });

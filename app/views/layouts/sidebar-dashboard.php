@@ -71,6 +71,10 @@ $esSuperAdmin = ($_SESSION['usuario']['roles'] ?? '') === 'superadmin';
                     <i class="fa-solid fa-clipboard-list"></i>
                     Reporte
                 </a>
+                <a href="<?php echo BASE_URL; ?>/cargos/registro">
+                    <i class="fa-solid fa-edit"></i>
+                    Registrar
+                </a>
             </div>
         </li>
         <!-- ================ END CARGOS ================ -->
@@ -86,6 +90,11 @@ $esSuperAdmin = ($_SESSION['usuario']['roles'] ?? '') === 'superadmin';
             <div class="dropdown-content">
                 <a href="<?php echo BASE_URL; ?>/asistencias/reportes"
                     class="<?php echo $rutaActual === 'asistencias' ? 'activo' : ''; ?>">
+                    <i class="fa-solid fa-clock"></i>
+                    Reporte
+                </a>
+                <a href="<?php echo BASE_URL; ?>/asistencias/reportes2"
+                    class="<?php echo $rutaActual === 'asistencias/reportes2' ? 'activo' : ''; ?>">
                     <i class="fa-solid fa-clock"></i>
                     Reporte
                 </a>

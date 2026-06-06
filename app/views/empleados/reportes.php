@@ -46,7 +46,7 @@
                         <tbody>
                             <?php foreach ($empleados as $empleaditos): ?>
                                 <tr>
-                                    <td><?php echo $empleaditos['id_empleado'] ?></td>
+                                    <td><?php echo $empleaditos['IDproducto'] ?></td>
                                     <td><?php echo $empleaditos['nombre'] ?></td>
                                     <td><?php echo htmlspecialchars($empleaditos['apellido']) ?></td>
                                     <td><?php echo htmlspecialchars($empleaditos['dni']) ?></td>
