@@ -132,8 +132,8 @@ Un producto puede tener muchas salidas, pero una salida pertenece a un solo prod
 ### Script de Base de datos
 
 ```sql
-CREATE DATABASE tienda_sintia;
-USE tienda_sintia;
+CREATE DATABASE tienda_sintia_2;
+USE tienda_sintia_2;
 
 create table usuario(
 id_usuario int auto_increment primary key,
