@@ -52,7 +52,7 @@
                                     <td><?php echo htmlspecialchars($cargitos['precio_compra']) ?></td>
                                     <td><?php echo htmlspecialchars($cargitos['precio_venta']) ?></td>
                                     <td><?php echo htmlspecialchars($cargitos['stock_actual']) ?></td>
-                                    <td><?php echo htmlspecialchars($cargitos['codigo']) ?></td>
+                                    <td><?php echo htmlspecialchars($cargitos['qrs']) ?></td>
                                     <td><?php echo htmlspecialchars($cargitos['nombre_categoria']) ?></td>
                                     <td>
                                         <button class="btn-editar"

@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>/public/css/dashboard.css">
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>/public/css/table-responsive.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
 <body>
@@ -24,6 +25,43 @@
             <span id="breadcrumb-page">Reportes</span>
         </nav>
         <div class="main-content">
+
+    
+
+        <div class="container-fluid mb-4">
+    <div class="card shadow-sm border-0">
+        <div class="card-body">
+            <form method="GET" class="row g-3 align-items-end">
+                <div class="col-md-4">
+                    <label class="form-label">
+                        Filtrar por fecha
+                    </label>
+
+                    <input
+                        type="date"
+                        name="fecha"
+                        class="form-control"
+                        value="<?php echo $fecha; ?>">
+                </div>
+                <div class="col-md-2">
+                    <button type="submit" class="btn btn-primary w-100">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        Buscar
+                    </button>
+                </div>
+                <div class="col-md-2">
+                    <a href="<?php echo BASE_URL; ?>/salidas/reportes"
+                       class="btn btn-secondary w-100">
+                        Mostrar hoy
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
             <div class="table-responsive">
                 <?php if (empty($lista_cargo)) : ?>
                     <p>No hay registro</p>

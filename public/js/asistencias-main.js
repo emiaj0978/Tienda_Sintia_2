@@ -8,75 +8,68 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   actualizarReloj();
   setInterval(actualizarReloj, 1000);
-  // BARCODE INPUT
-  const inputdni = document.getElementById("codigo");
-  const name_employer = document.getElementById("empleado-nombre");
+  // INPUT DEL QR
+  const inputqr = document.getElementById("codigo");
+  const nombreProducto = document.getElementById("empleado-nombre");
   const msj = document.getElementById("msj");
-
-  inputdni.addEventListener("input", function () {
-    if (inputdni.value.length === 8) {
-      let dninuevo = inputdni.value; //este es el DNI ya validado y correcto.
-      buscarEmpleado(dninuevo); //guardo en el argumento de la función
-      inputdni.value = ""; //luego limpio el input del DNI
+  inputqr.addEventListener("input", function () {
+    // Tu columna qrs es VARCHAR(13)
+    if (inputqr.value.length === 13) {
+      let qr = inputqr.value;
+      buscarProducto(qr);
+      inputqr.value = "";
     }
   });
 
   document.addEventListener("click", function () {
-    inputdni.focus();
+    inputqr.focus();
   });
-
-  //Funcion para consultar o buscar DNI del empleado.
-  function buscarEmpleado(dni_parametro) {
-    //Enviamos los datos mediante ajax-fetch
+  // BUSCAR PRODUCTO POR QR
+  function buscarProducto(qr_parametro) {
     fetch(BASE_URL + "/asistencias/buscar", {
       method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: "dni=" + dni_parametro,
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      body: "qrs=" + qr_parametro,
     })
       .then(function (respuesta) {
-        // Retornamos la respesta JSON
         return respuesta.json();
       })
       .then(function (datos) {
-        console.log(datos); //sirve para los resultados en consola del navegador
+        console.log(datos);
         if (datos.encontrado) {
-          // console.log("EMPLEADO CORRECTO")
-          name_employer.textContent =
-            datos.empleado.nombre + " " + datos.empleado.apellido;
-          registrarAsistenciaEmpleado(datos.empleado.id_empleado); //ESTE ES MI FUNCION PARA REGISTRAR
+          nombreProducto.textContent =
+            datos.producto.nombre + " - " + datos.producto.descripcion;
+          registrarSalidaProducto(datos.producto.IDproducto);
         } else {
-          //console.log("EMPLEADO NO ECONTRADO")
-          name_employer.textContent = "Empleado no encontrado";
-          msj.textContent = "Empleado no debe trabajar en esta empresa";
+          nombreProducto.textContent = "Producto no encontrado";
+          msj.textContent = "Código QR no registrado";
         }
       });
   }
 
-  //Funcion para registrar el empleado, una vez consultado su DNI
-  function registrarAsistenciaEmpleado(idEmpleado) {
-    //Enviamos los datos mediante ajax-fetch
+  // REGISTRAR SALIDA
+  function registrarSalidaProducto(idProducto) {
     fetch(BASE_URL + "/asistencias/registradito", {
       method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: "id_empleadito=" + idEmpleado,
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      body: "id_producto=" + idProducto,
     })
       .then(function (respuesta) {
-        // Retornamos la respesta JSON
         return respuesta.json();
       })
       .then(function (datos) {
-        console.log(datos); //sirve para los resultados en consola del navegador
+        console.log(datos);
         if (datos.registrado) {
-          msj.textContent = "Asistencia registrada correctamente";
+          msj.textContent = "Salida registrada correctamente";
         }
-
-        setInterval(function(){
-          name_employer.textContent = "— — —";
-          msj.textContent = '';
+        setTimeout(function () {
+          nombreProducto.textContent = "— — —";
+          msj.textContent = "";
         }, 5000);
       });
   }
-
-  
-
 });

@@ -31,17 +31,16 @@ class Empleado{
         return $stmt->fetchAll();
     }
 
-    //Creamos un modulo para llamar a UN empleado por DNI.
-    public function buscarPorDni(String $dni){
-        // variable $sql para almacenar  
-        $sql = "SELECT * FROM empleado WHERE dni = ?"; 
-        // statement = declaración
-        $stmt = $this->db->prepare($sql);
-        // Ejecutamos la declaración ($stmt)
-        $stmt->execute([$dni]);
-        //Retornamos los datos -- fetch -> devuelve 1 valor - 1 dato
-        return $stmt->fetch();
-    }
+    public function buscarPorQr(string $qrs){
+
+    $sql = "SELECT * FROM Producto WHERE qrs = ?";
+
+    $stmt = $this->db->prepare($sql);
+
+    $stmt->execute([$qrs]);
+
+    return $stmt->fetch();
+}
     //Creamos un modulo para eliminar a un empleado por ID
     public function eliminarPorIdEmpleado(String $codigo){
         $sql = "DELETE FROM empleado WHERE id_empleado = ?"; 
