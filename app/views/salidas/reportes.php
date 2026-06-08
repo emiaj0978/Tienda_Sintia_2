@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>/public/css/dashboard.css">
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>/public/css/table-responsive.css">
-    <link rel="stylesheet" href="<?php echo BASE_URL; ?>/public/css/botones.css">
 </head>
 
 <body>
@@ -35,17 +34,17 @@
                                 <th>ID</th>
                                 <th>Nombre</th>
                                 <th>Apellido</th>
-                                <th>clave</th>
-                                
+                                <th>Acciones</th>
+
                             </tr>
                         </thead>
                         <tbody>
                             <?php foreach ($lista_cargo as $cargitos): ?>
                                 <tr>
-                                    <td><?php echo $cargitos['id_usuario'] ?></td>
-                                    <td><?php echo htmlspecialchars($cargitos['roles']) ?></td>
-                                    <td><?php echo htmlspecialchars($cargitos['nombre_usuario']) ?></td>
-                                    <td><?php echo htmlspecialchars($cargitos['clave']) ?></td>
+                                    <td><?php echo $cargitos['IDsalida'] ?></td>
+                                    <td><?php echo htmlspecialchars($cargitos['nombre']) ?></td>
+                                    <td><?php echo htmlspecialchars($cargitos['fecha']) ?></td>
+                                    <td><?php echo htmlspecialchars($cargitos['cantidad']) ?></td>
                                     
                                 </tr>
                             <?php endforeach; ?>
@@ -62,7 +61,6 @@
     </script>
 
     <script src="<?php echo BASE_URL; ?>/public/js/dashboard.js"></script>
-    <script src="<?php echo BASE_URL; ?>/public/js/empleados-main.js"></script>
 </body>
 
 </html>

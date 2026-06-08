@@ -1,36 +1,23 @@
 <?php 
-//Llamamos a la conexión de la base de datos.
 require_once __DIR__ . '/../core/Database.php';
-//Creamos el modelo o clase llamada Empleado (SINGULAR).
-class Empleado{
-    // La propiedad $db guardará la conexión PDO.
-    // Le decimos que solo puede ser de tipo PDO (tipado estricto).
-    // modificador de acceso("private") significa que solo se puede usar dentro de esta clase.
+class Salida{
     private PDO $db;
-
-    //Al crear el modelo, obtenemos la conexion automaticamente.
     public function __construct(){
-        // Database::getConnection() nos regresa la conexión PDO que creamos en core/Database.php.
-        // Al guardarla en $this->db, cualquier método de esta clase puede usarla.
         $this->db = Database::getConnection();
     }
-    //Creamos el modulo para llamar todo los datos de la tabla EMPLEADOS
-    //public function getAll():array
-    public function obtenerEmpleados():array {
-        // variable $sql para almacenar
-        $sql = "SELECT * FROM producto
-                INNER JOIN categoria 
-                ON producto.IDcategoria = categoria.IDcategoria 
-                ORDER BY producto.IDcategoria DESC 
-                "; 
-        // statement = declaración
+    public function obtenerCargos():array {
+        $sql = "SELECT * FROM salida
+                INNER JOIN producto 
+                ON salida.IDproducto = producto.IDproducto 
+                ORDER BY salida.IDproducto DESC"; 
         $stmt = $this->db->prepare($sql);
-        // Ejecutamos la declaración ($stmt)
         $stmt->execute();
-        //Retornamos los datos
         return $stmt->fetchAll();
     }
 
+
+    
+    
     //Creamos un modulo para llamar a UN empleado por DNI.
     public function buscarPorDni(String $dni){
         // variable $sql para almacenar  
@@ -116,20 +103,8 @@ class Empleado{
         return ['ok' => true, 'mensaje' => 'Empleado actualizado'];
     }
 
-
-
-
-
-    public function obtenerProductos():array {
-        $sql = "SELECT * FROM producto"; 
-        $stmt = $this->db->prepare($sql);
-        $stmt->execute();
-        return $stmt->fetchAll();
-    }
-
-
-
-
-
 }
+
+
+
 

@@ -1,9 +1,9 @@
 <?php
 require_once __DIR__ . '/../core/Controller.php';
-require_once __DIR__ . '/../models/Empleado.php';
+require_once __DIR__ . '/../models/Salida.php';
 
 // Controlador para el módulo de empleados.
-class EmpleadosController extends Controller {
+class SalidasController extends Controller {
 
     public function index(): void {
         $this->reporte();
@@ -17,17 +17,17 @@ class EmpleadosController extends Controller {
         $this->soloSuperAdmin();
 
         // Cargamos el modelo y obtenemos los datos de empleados.
-        $modelo = new Empleado();
-        $variable_empleados = $modelo->obtenerEmpleados();
+        //$modelo = new Empleado();
+        //$variable_empleados = $modelo->obtenerEmpleados();
 
-        require_once __DIR__ . '/../models/Cargo.php';
-        $cargo = new Cargo();
+        //require_once __DIR__ . '/../models/Cargo.php';
+        $cargo = new Salida();
         $variable_cargo = $cargo->obtenerCargos();
 
         // Enviamos los datos a la vista.
-        $this->view('productos/reportes', [
+        $this->view('salidas/reportes', [
             'usuario'     => $_SESSION['usuario'],
-            'empleados'   => $variable_empleados,
+            //'empleados'   => $variable_empleados,
             'lista_cargo' => $variable_cargo
         ]);
     }

@@ -2,8 +2,7 @@
 require_once __DIR__ . '/../core/Database.php';
 date_default_timezone_set('America/Los_Angeles');
 
-class Asistencia
-{
+class Asistencia{
     private PDO $db;
     public function __construct()
     {

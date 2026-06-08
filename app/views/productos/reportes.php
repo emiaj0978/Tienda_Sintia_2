@@ -35,11 +35,7 @@
                                 <th>ID</th>
                                 <th>Nombre</th>
                                 <th>Apellido</th>
-                                <th>DNI</th>
-                                <th>Celular</th>
-                                <th>Correo</th>
-                                <th>Cargo</th>
-                                <th>Fecha de Registro</th>
+                                
                                 <th>Acciones</th>
                             </tr>
                         </thead>
@@ -47,13 +43,14 @@
                             <?php foreach ($empleados as $empleaditos): ?>
                                 <tr>
                                     <td><?php echo $empleaditos['IDproducto'] ?></td>
-                                    <td><?php echo $empleaditos['nombre'] ?></td>
-                                    <td><?php echo htmlspecialchars($empleaditos['apellido']) ?></td>
-                                    <td><?php echo htmlspecialchars($empleaditos['dni']) ?></td>
-                                    <td><?php echo htmlspecialchars($empleaditos['celular']) ?></td>
-                                    <td><?php echo htmlspecialchars($empleaditos['correo']) ?></td>
-                                    <td><?php echo htmlspecialchars($empleaditos['nombre_cargo']) ?></td>
-                                    <td><?php echo htmlspecialchars($empleaditos['fecha_registro']) ?></td>
+                                    <td><?php echo htmlspecialchars($empleaditos['nombre']) ?></td>
+                                    <td><?php echo htmlspecialchars($empleaditos['descripcion']) ?></td>
+                                    <td><?php echo htmlspecialchars($empleaditos['precio_compra']) ?></td>
+                                    <td><?php echo htmlspecialchars($empleaditos['precio_venta']) ?></td>
+                                    <td><?php echo htmlspecialchars($empleaditos['stock_actual']) ?></td>
+                                    <td><?php echo htmlspecialchars($empleaditos['codigo']) ?></td>
+                                    <td><?php echo htmlspecialchars($empleaditos['IDcategoria']) ?></td>
+                                    
                                     <td>
                                         <button class="btn-editar"
                                             data-id="<?php echo $empleaditos['id_empleado'] ?>"
