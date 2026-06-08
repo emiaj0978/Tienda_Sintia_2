@@ -31,7 +31,6 @@ class Salida{
     return $stmt->fetchAll();
 }
 
-
 }
 
 

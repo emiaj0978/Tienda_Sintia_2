@@ -12,9 +12,4 @@ class Usuario{
         return $stmt->fetchAll();
     }
 
-
 }
-
-
-
-
