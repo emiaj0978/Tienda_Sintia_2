@@ -17,17 +17,17 @@ class EmpleadosController extends Controller {
         $this->soloSuperAdmin();
 
         // Cargamos el modelo y obtenemos los datos de empleados.
-        //$modelo = new Empleado();
-        //$variable_empleados = $modelo->obtenerEmpleados();
+        require_once __DIR__ . '/../models/Cargo.php';
+        $modelo = new Cargo();
+        $variable_empleados = $modelo->obtenerCargos();
 
-        //require_once __DIR__ . '/../models/Cargo.php';
         $cargo = new Empleado();
-        $variable_cargo = $cargo->obtenerCargos();
+        $variable_cargo = $cargo->obtenerEmpleados();
 
         // Enviamos los datos a la vista.
         $this->view('empleados/reportes', [
             'usuario'     => $_SESSION['usuario'],
-            //'empleados'   => $variable_empleados,
+            'empleados'   => $variable_empleados,
             'lista_cargo' => $variable_cargo
         ]);
     }
