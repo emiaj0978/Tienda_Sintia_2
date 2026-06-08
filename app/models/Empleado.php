@@ -32,15 +32,12 @@ class Empleado{
     }
 
     public function buscarPorQr(string $qrs){
-
     $sql = "SELECT * FROM Producto WHERE qrs = ?";
-
     $stmt = $this->db->prepare($sql);
-
     $stmt->execute([$qrs]);
+    return $stmt->fetch();   
+    }
 
-    return $stmt->fetch();
-}
     //Creamos un modulo para eliminar a un empleado por ID
     public function eliminarPorIdEmpleado(String $codigo){
         $sql = "DELETE FROM empleado WHERE id_empleado = ?"; 
