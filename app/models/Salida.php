@@ -9,7 +9,7 @@ class Salida{
         $sql = "SELECT * FROM salida
                 INNER JOIN producto 
                 ON salida.IDproducto = producto.IDproducto 
-                ORDER BY salida.IDproducto DESC"; 
+                ORDER BY salida.IDproducto"; 
         $stmt = $this->db->prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll();

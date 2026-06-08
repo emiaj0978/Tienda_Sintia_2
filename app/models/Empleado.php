@@ -21,7 +21,7 @@ class Empleado{
         $sql = "SELECT * FROM producto
                 INNER JOIN categoria 
                 ON producto.IDcategoria = categoria.IDcategoria 
-                ORDER BY producto.IDcategoria DESC 
+                ORDER BY producto.IDcategoria 
                 "; 
         // statement = declaración
         $stmt = $this->db->prepare($sql);

@@ -17,17 +17,18 @@ class SalidasController extends Controller {
         $this->soloSuperAdmin();
 
         // Cargamos el modelo y obtenemos los datos de empleados.
-        //$modelo = new Empleado();
-        //$variable_empleados = $modelo->obtenerEmpleados();
+        require_once __DIR__ . '/../models/Empleado.php';
+        $modelo = new Empleado();
+        $variable_empleados = $modelo->obtenerEmpleados();
 
-        //require_once __DIR__ . '/../models/Cargo.php';
-        $cargo = new Salida();
+        
+        $cargo = new salida();
         $variable_cargo = $cargo->obtenerCargos();
 
         // Enviamos los datos a la vista.
         $this->view('salidas/reportes', [
             'usuario'     => $_SESSION['usuario'],
-            //'empleados'   => $variable_empleados,
+            'empleados'   => $variable_empleados,
             'lista_cargo' => $variable_cargo
         ]);
     }
