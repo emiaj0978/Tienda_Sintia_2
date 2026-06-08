@@ -116,20 +116,20 @@ class Empleado{
         return ['ok' => true, 'mensaje' => 'Empleado actualizado'];
     }
 
-
-
-
-
-    public function obtenerProductos():array {
-        $sql = "SELECT * FROM producto"; 
+    public function obtenerCargos():array {
+        // variable $sql para almacenar
+        $sql = "SELECT * FROM producto
+                INNER JOIN categoria 
+                ON producto.IDcategoria = categoria.IDcategoria 
+                ORDER BY producto.IDcategoria DESC 
+                "; 
+        // statement = declaración
         $stmt = $this->db->prepare($sql);
+        // Ejecutamos la declaración ($stmt)
         $stmt->execute();
+        //Retornamos los datos
         return $stmt->fetchAll();
     }
-
-
-
-
 
 }
 

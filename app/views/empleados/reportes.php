@@ -26,7 +26,7 @@
         </nav>
         <div class="main-content">
             <div class="table-responsive">
-                <?php if (empty($empleados)) : ?>
+                <?php if (empty($lista_cargo)) : ?>
                     <p>No hay registro</p>
                 <?php else: ?>
                     <table class="table table-bordered text-center align-middle">
@@ -35,22 +35,25 @@
                                 <th>ID</th>
                                 <th>Nombre</th>
                                 <th>Apellido</th>
-                                
+                                <th>DNI</th>
+                                <th>Celular</th>
+                                <th>Correo</th>
+                                <th>Cargo</th>
+                                <th>Fecha de Registro</th>
                                 <th>Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ($empleados as $empleaditos): ?>
+                            <?php foreach ($lista_cargo as $cargitos): ?>
                                 <tr>
-                                    <td><?php echo $empleaditos['IDproducto'] ?></td>
-                                    <td><?php echo htmlspecialchars($empleaditos['nombre']) ?></td>
-                                    <td><?php echo htmlspecialchars($empleaditos['descripcion']) ?></td>
-                                    <td><?php echo htmlspecialchars($empleaditos['precio_compra']) ?></td>
-                                    <td><?php echo htmlspecialchars($empleaditos['precio_venta']) ?></td>
-                                    <td><?php echo htmlspecialchars($empleaditos['stock_actual']) ?></td>
-                                    <td><?php echo htmlspecialchars($empleaditos['codigo']) ?></td>
-                                    <td><?php echo htmlspecialchars($empleaditos['IDcategoria']) ?></td>
-                                    
+                                    <td><?php echo $cargitos['IDproducto'] ?></td>
+                                    <td><?php echo $cargitos['nombre'] ?></td>
+                                    <td><?php echo htmlspecialchars($cargitos['descripcion']) ?></td>
+                                    <td><?php echo htmlspecialchars($cargitos['precio_compra']) ?></td>
+                                    <td><?php echo htmlspecialchars($cargitos['precio_venta']) ?></td>
+                                    <td><?php echo htmlspecialchars($cargitos['stock_actual']) ?></td>
+                                    <td><?php echo htmlspecialchars($cargitos['codigo']) ?></td>
+                                    <td><?php echo htmlspecialchars($cargitos['nombre_categoria']) ?></td>
                                     <td>
                                         <button class="btn-editar"
                                             data-id="<?php echo $empleaditos['id_empleado'] ?>"

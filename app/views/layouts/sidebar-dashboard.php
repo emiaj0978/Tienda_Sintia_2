@@ -38,19 +38,19 @@ $esSuperAdmin = ($_SESSION['usuario']['roles'] ?? '') === 'superadmin';
         <?php if ($esSuperAdmin): ?>
             
         <!-- ================ START EMPLEADOS ================ -->
-        <li class="<?php echo $rutaActual === 'productos' ? 'dropdown show' : 'dropdown'; ?>">
-            <a href="#" class="dropbtn <?php echo $rutaActual === 'productos' ? 'activo' : ''; ?>">
+        <li class="<?php echo $rutaActual === 'empleados' ? 'dropdown show' : 'dropdown'; ?>">
+            <a href="#" class="dropbtn <?php echo $rutaActual === 'empleados' ? 'activo' : ''; ?>">
                 <i class="fa-solid fa-clipboard-list"></i>
                 <span>Empleados</span>
                 <i class="fa-solid fa-chevron-down arrow"></i>
             </a>
             <div class="dropdown-content">
-                <a href="<?php echo BASE_URL; ?>/productos/reportes"
-                    class="<?php echo $rutaActual === 'productos/reportes' ? 'activo' : ''; ?>">
+                <a href="<?php echo BASE_URL; ?>/empleados/reportes"
+                    class="<?php echo $rutaActual === 'empleados/reportes' ? 'activo' : ''; ?>">
                     <i class="fa-solid fa-users"></i>
                     Reporte
                 </a>
-                <a href="<?php echo BASE_URL; ?>/productos/registro">
+                <a href="<?php echo BASE_URL; ?>/empleados/registro">
                     <i class="fa-solid fa-edit"></i>
                     Registrar
                 </a>
