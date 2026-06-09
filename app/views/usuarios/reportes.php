@@ -20,9 +20,8 @@
         <nav class="breadcrumb">
             <span>Dashboard</span>
             <i class="fa-solid fa-chevron-right"></i>
-            <span>Empleados</span>
-            <i class="fa-solid fa-chevron-right"></i>
-            <span id="breadcrumb-page">Reportes</span>
+            <span>Usuarios</span>
+            
         </nav>
         <div class="main-content">
             <div class="table-responsive">

@@ -41,18 +41,18 @@ $esSuperAdmin = ($_SESSION['usuario']['roles'] ?? '') === 'superadmin';
         <li class="<?php echo $rutaActual === 'empleados' ? 'dropdown show' : 'dropdown'; ?>">
             <a href="#" class="dropbtn <?php echo $rutaActual === 'empleados' ? 'activo' : ''; ?>">
                 <i class="fa-solid fa-clipboard-list"></i>
-                <span>Empleados</span>
+                <span>Producto</span>
                 <i class="fa-solid fa-chevron-down arrow"></i>
             </a>
             <div class="dropdown-content">
                 <a href="<?php echo BASE_URL; ?>/empleados/reportes"
                     class="<?php echo $rutaActual === 'empleados/reportes' ? 'activo' : ''; ?>">
                     <i class="fa-solid fa-users"></i>
-                    Reporte
+                    Productos
                 </a>
                 <a href="<?php echo BASE_URL; ?>/empleados/registro">
                     <i class="fa-solid fa-edit"></i>
-                    Registrar
+                    Agregar productos
                 </a>
             </div>
         </li>
@@ -62,18 +62,18 @@ $esSuperAdmin = ($_SESSION['usuario']['roles'] ?? '') === 'superadmin';
         <li class="<?php echo $rutaActual === 'cargos' ? 'dropdown show' : 'dropdown'; ?>">
             <a href="#" class="dropbtn <?php echo $rutaActual === 'cargos' ? 'activo' : ''; ?>">
                 <i class="fa-solid fa-briefcase"></i>
-                <span>Cargos</span>
+                <span>Categoria</span>
                 <i class="fa-solid fa-chevron-down arrow"></i>
             </a>
             <div class="dropdown-content">
                 <a href="<?php echo BASE_URL; ?>/cargos/reportes"
                     class="<?php echo $rutaActual === '/cargos/reportes' ? 'activo' : ''; ?>">
                     <i class="fa-solid fa-clipboard-list"></i>
-                    Reporte
+                    Categorias
                 </a>
                 <a href="<?php echo BASE_URL; ?>/cargos/registro">
                     <i class="fa-solid fa-edit"></i>
-                    Registrar
+                    Agregar categorias
                 </a>
             </div>
         </li>
@@ -84,14 +84,14 @@ $esSuperAdmin = ($_SESSION['usuario']['roles'] ?? '') === 'superadmin';
         <li class="<?php echo $rutaActual === 'salidas' ? 'dropdown show' : 'dropdown'; ?>">
             <a href="#" class="dropbtn <?php echo $rutaActual === 'salidas' ? 'activo' : ''; ?>">
                 <i class="fa-solid fa-calendar-check"></i>
-                <span>Asistencia</span>
+                <span>Registro</span>
                 <i class="fa-solid fa-chevron-down arrow"></i>
             </a>
             <div class="dropdown-content">
                 <a href="<?php echo BASE_URL; ?>/salidas/reportes"
                     class="<?php echo $rutaActual === 'salidas/reportes' ? 'activo' : ''; ?>">
                     <i class="fa-solid fa-clock"></i>
-                    Reporte
+                    Salida
                 </a>
             </div>
 

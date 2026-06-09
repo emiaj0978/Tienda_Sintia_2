@@ -21,9 +21,9 @@
     <nav class="breadcrumb">
         <span>Dashboard</span>
         <i class="fa-solid fa-chevron-right"></i>
-        <span>Categorías</span>
+        <span>Categoría</span>
         <i class="fa-solid fa-chevron-right"></i>
-        <span>Reporte</span>
+        <span id="breadcrumb-page">Categorías</span>
     </nav>
 
     <div class="main-content">

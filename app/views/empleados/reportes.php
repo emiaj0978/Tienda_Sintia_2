@@ -21,9 +21,9 @@
     <nav class="breadcrumb">
         <span>Dashboard</span>
         <i class="fa-solid fa-chevron-right"></i>
-        <span>Productos</span>
+        <span>Producto</span>
         <i class="fa-solid fa-chevron-right"></i>
-        <span>Reportes</span>
+        <span id="breadcrumb-page">Productos</span>
     </nav>
 
     <div class="main-content">
