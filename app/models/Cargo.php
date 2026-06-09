@@ -1,107 +1,86 @@
-<?php 
+<?php
 require_once __DIR__ . '/../core/Database.php';
-class Cargo{
+
+class Cargo {
+
     private PDO $db;
+
     public function __construct(){
         $this->db = Database::getConnection();
     }
-    public function obtenerCargos():array {
-        $sql = "SELECT IDcategoria, nombre_categoria, descripcion FROM categoria"; 
+
+    // ================= LISTAR =================
+    public function obtenerCategorias(): array {
+        $sql = "SELECT * FROM Categoria ORDER BY IDcategoria DESC";
         $stmt = $this->db->prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll();
     }
 
+    // ================= ELIMINAR =================
+    public function eliminarCategoria(string $id): array {
+    $sql = "SELECT COUNT(*) AS total
+            FROM Producto
+            WHERE IDcategoria = ?";
+    $stmt = $this->db->prepare($sql);
+    $stmt->execute([$id]);
+    $fila = $stmt->fetch();
 
-    
-    
-    //Creamos un modulo para llamar a UN empleado por DNI.
-    public function buscarPorDni(String $dni){
-        // variable $sql para almacenar  
-        $sql = "SELECT * FROM empleado WHERE dni = ?"; 
-        // statement = declaración
-        $stmt = $this->db->prepare($sql);
-        // Ejecutamos la declaración ($stmt)
-        $stmt->execute([$dni]);
-        //Retornamos los datos -- fetch -> devuelve 1 valor - 1 dato
-        return $stmt->fetch();
-    }
-    //Creamos un modulo para eliminar a un empleado por ID
-    public function eliminarPorIdEmpleado(String $codigo){
-        $sql = "DELETE FROM empleado WHERE id_empleado = ?"; 
-        $stmt = $this->db->prepare($sql);
-        $stmt->execute([$codigo]);
-        return $stmt;
+    if ($fila['total'] > 0) {
+        return [
+            'ok' => false,
+            'mensaje' => 'Esta categoría está siendo utilizada por uno o más productos'
+        ];
     }
 
-    //Creamos un modulo para guardar empleados
-    public function guardarEmpleados(array $datos):array{
-        //Validar DNI unico
-         $sql1 = "SELECT id_empleado 
-                 FROM empleado
-                 WHERE dni = :dni";    
-        $stmt1 = $this->db->prepare($sql1);
-        $stmt1->execute(['dni' => $datos['dni']]);
-        if($stmt1->fetch()){
-            return ['ok' => false, 'mensaje' => 'Ya existe un empleado con ese DNI'];
-        }
-        //Validar Correo Unico
-        $sql2 = "SELECT id_empleado 
-                 FROM empleado
-                 WHERE correo = :correo";    
-        $stmt2 = $this->db->prepare($sql2);
-        $stmt2->execute(['correo' => $datos['correo']]);
-        if($stmt2->fetch()){
-            return ['ok' => false, 'mensaje' => 'Ya existe un empleado con ese Correo'];
-        }
+    $sql = "DELETE FROM Categoria WHERE IDcategoria = ?";
+    $stmt = $this->db->prepare($sql);
+    $stmt->execute([$id]);
+    return [
+        'ok' => true,
+        'mensaje' => 'Categoría eliminada correctamente'
+    ];
+    }
 
-        //INSERTAMOS LOS DATOS
-        $sql = "INSERT INTO empleado
-                (nombre,apellido,dni,celular,correo,id_cargo)
-                VALUES(:n,:a,:d,:ce,:co,:i_c)";    
+    // ================= GUARDAR =================
+    public function guardarCategoria(array $datos): array {
+
+        $sql = "INSERT INTO Categoria (nombre_categoria, descripcion)
+                VALUES (:n, :d)";
+
         $stmt = $this->db->prepare($sql);
+
         $stmt->execute([
-            'n'  =>  $datos['nombre'],
-            'a' => $datos['apellido'],
-            'd' => $datos['dni'],
-            'ce' => $datos['celular'],
-            'co' => $datos['correo'] ,
-            'i_c' => $datos['id_cargo']
+            'n' => $datos['nombre_categoria'],
+            'd' => $datos['descripcion']
         ]);
-        return ['ok'=>true,'mensaje'=>'Empleado Registrado'];
+
+        return ['ok' => true, 'mensaje' => 'Categoría registrada'];
     }
 
-    public function editarEmpleado(array $datos): array {
-        $sql1 = "SELECT id_empleado FROM empleado WHERE dni = :dni AND id_empleado != :id";
-        $stmt1 = $this->db->prepare($sql1);
-        $stmt1->execute(['dni' => $datos['dni'], 'id' => $datos['id_empleado']]);
-        if ($stmt1->fetch()) {
-            return ['ok' => false, 'mensaje' => 'Ya existe otro empleado con ese DNI'];
-        }
+    // ================= EDITAR =================
+    public function editarCategoria(array $datos): array {
 
-        $sql2 = "SELECT id_empleado FROM empleado WHERE correo = :correo AND id_empleado != :id";
-        $stmt2 = $this->db->prepare($sql2);
-        $stmt2->execute(['correo' => $datos['correo'], 'id' => $datos['id_empleado']]);
-        if ($stmt2->fetch()) {
-            return ['ok' => false, 'mensaje' => 'Ya existe otro empleado con ese Correo'];
-        }
+        $sql = "UPDATE Categoria SET
+                nombre_categoria = :n,
+                descripcion = :d
+                WHERE IDcategoria = :id";
 
-        $sql = "UPDATE empleado SET nombre=:n, apellido=:a, dni=:d, celular=:ce, correo=:co, id_cargo=:i_c WHERE id_empleado=:id";
         $stmt = $this->db->prepare($sql);
+
         $stmt->execute([
-            'n'   => $datos['nombre'],
-            'a'   => $datos['apellido'],
-            'd'   => $datos['dni'],
-            'ce'  => $datos['celular'],
-            'co'  => $datos['correo'],
-            'i_c' => $datos['id_cargo'],
-            'id'  => $datos['id_empleado']
+            'n'  => $datos['nombre_categoria'],
+            'd'  => $datos['descripcion'],
+            'id' => $datos['IDcategoria']
         ]);
-        return ['ok' => true, 'mensaje' => 'Empleado actualizado'];
+
+        return ['ok' => true, 'mensaje' => 'Categoría actualizada'];
     }
 
+    public function obtenerCargos(): array {
+        $sql = "SELECT * FROM Categoria ORDER BY IDcategoria DESC";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
 }
-
-
-
-

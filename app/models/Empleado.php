@@ -88,4 +88,15 @@ class Empleado {
         $stmt->execute([$qrs]);
         return $stmt->fetch();   
     }
+
+    public function obtenerEmpleados(): array {
+        $sql = "SELECT p.*, c.nombre_categoria
+                FROM Producto p
+                INNER JOIN Categoria c ON p.IDcategoria = c.IDcategoria
+                ORDER BY p.IDproducto DESC";
+
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
 }

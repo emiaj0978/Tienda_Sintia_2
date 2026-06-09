@@ -2,33 +2,28 @@
 require_once __DIR__ . '/../core/Controller.php';
 require_once __DIR__ . '/../models/Cargo.php';
 
-// Controlador para el módulo de empleados.
 class CargosController extends Controller {
 
     public function index(): void {
         $this->reporte();
     }
 
+    // ================= LISTAR =================
     public function reporte(): void {
+
         if (!isset($_SESSION['usuario'])) {
             header("Location: " . BASE_URL . "/login");
             exit();
         }
+
         $this->soloSuperAdmin();
 
-        // Cargamos el modelo y obtenemos los datos de empleados.
-        //$modelo = new Empleado();
-        //$variable_empleados = $modelo->obtenerEmpleados();
+        $categoria = new Cargo();
+        $categorias = $categoria->obtenerCategorias();
 
-        //require_once __DIR__ . '/../models/Cargo.php';
-        $cargo = new Cargo();
-        $variable_cargo = $cargo->obtenerCargos();
-
-        // Enviamos los datos a la vista.
         $this->view('cargos/reportes', [
-            'usuario'     => $_SESSION['usuario'],
-            //'empleados'   => $variable_empleados,
-            'lista_cargo' => $variable_cargo
+            'usuario'    => $_SESSION['usuario'],
+            'categorias' => $categorias
         ]);
     }
 
@@ -36,71 +31,60 @@ class CargosController extends Controller {
         $this->reporte();
     }
 
-    public function eliminar_empleado():void{
-        require_once __DIR__ . '/../models/Empleado.php'; //llamamos al models
-        $idEmpleado = $_POST['id_empleadito'];
-        $empleado = new Empleado(); //Instanciamos la clase o objeto
-        $resultado = $empleado->eliminarPorIdEmpleado($idEmpleado); 
-        //echo "ID__" . $idEmpleado;
-        header('Content-Type: application/json');
-        if($resultado){ //Si es verdadero, ejecuta esto
-            echo json_encode(['eliminar'=>true]);
-        }else{ //Si es falso, ejectura esto
-            echo json_encode(['eliminar'=>false]);
-        }
-    } 
+    // ================= ELIMINAR =================
+    public function eliminar(): void {
 
-    //EmpleadosController -> Mostrar la vista de REGISTRO+
+        $id = $_POST['id'];
+
+        $categoria = new Cargo();
+        $resultado = $categoria->eliminarCategoria($id);
+
+        header('Content-Type: application/json');
+        echo json_encode(['eliminar' => $resultado]);
+    }
+
+    // ================= REGISTRO =================
     public function registro(): void {
-        require_once __DIR__ . '/../models/Cargo.php';
+
         if (!isset($_SESSION['usuario'])) {
             header("Location: " . BASE_URL . "/login");
             exit();
         }
-        //Instanciar el objeto del MODELO CARGO
-        $cargo = new Cargo();
-        $variable_cargo = $cargo->obtenerCargos();
-        // Enviamos los datos a la vista.
-        $this->view('empleados/registro', [
-            'usuario' => $_SESSION['usuario'],
-            'lista_cargo' => $variable_cargo
+
+        $this->view('cargos/registro', [
+            'usuario' => $_SESSION['usuario']
         ]);
     }
 
-    public function editar_empleado(): void {
-        $datos = [
-            'id_empleado' => $_POST['id_empleado'],
-            'nombre'      => $_POST['nombre'],
-            'apellido'    => $_POST['apellido'],
-            'dni'         => $_POST['dni'],
-            'celular'     => $_POST['celular'],
-            'correo'      => $_POST['correo'],
-            'id_cargo'    => $_POST['id_cargo']
-        ];
-        $empleado = new Empleado();
-        $resultado = $empleado->editarEmpleado($datos);
+    // ================= EDITAR =================
+    public function editar(): void {
+
+        $categoria = new Cargo();
+
+        $resultado = $categoria->editarCategoria([
+            'IDcategoria'      => $_POST['IDcategoria'],
+            'nombre_categoria' => $_POST['nombre_categoria'],
+            'descripcion'      => $_POST['descripcion']
+        ]);
+
         header('Content-Type: application/json');
-        echo json_encode($resultado);
+        echo json_encode(['ok' => $resultado]);
     }
 
-    public function guardar():void{
-        //Preparar o convertir los datos en array
-        $datos = [
-            'nombre'  =>  $_POST['nombre'],
-            'apellido' => $_POST['apellido'],
-            'dni' => $_POST['dni'],
-            'celular' => $_POST['celular'],
-            'correo' => $_POST['correo'],
-            'id_cargo' => $_POST['cargo']
-        ];
-        //Instanciar o crear el objeto
-        $empleado = new Empleado();
-        $resultado = $empleado->guardarEmpleados($datos);
-        if($resultado['ok'] == false){  //si es Verdadero
-            header('Location: '. BASE_URL .'/empleados/reporte');
-        }else{
-            header('Location: '. BASE_URL .'/empleados/registro');
+    // ================= GUARDAR =================
+    public function guardar(): void {
+
+        $categoria = new Cargo();
+
+        $resultado = $categoria->guardarCategoria([
+            'nombre_categoria' => $_POST['nombre_categoria'],
+            'descripcion'      => $_POST['descripcion']
+        ]);
+
+        if ($resultado) {
+            header('Location: ' . BASE_URL . '/cargos/reportes');
+        } else {
+            header('Location: ' . BASE_URL . '/cargos/registro');
         }
     }
-    
 }
