@@ -11,7 +11,7 @@ class Cargo {
 
     // ================= LISTAR =================
     public function obtenerCategorias(): array {
-        $sql = "SELECT * FROM Categoria ORDER BY IDcategoria DESC";
+        $sql = "SELECT * FROM Categoria ORDER BY IDcategoria";
         $stmt = $this->db->prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll();
