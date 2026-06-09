@@ -1,116 +1,91 @@
 <?php 
-//Llamamos a la conexión de la base de datos.
 require_once __DIR__ . '/../core/Database.php';
-//Creamos el modelo o clase llamada Empleado (SINGULAR).
-class Empleado{
-    // La propiedad $db guardará la conexión PDO.
-    // Le decimos que solo puede ser de tipo PDO (tipado estricto).
-    // modificador de acceso("private") significa que solo se puede usar dentro de esta clase.
+
+class Empleado {
+
     private PDO $db;
 
-    //Al crear el modelo, obtenemos la conexion automaticamente.
     public function __construct(){
-        // Database::getConnection() nos regresa la conexión PDO que creamos en core/Database.php.
-        // Al guardarla en $this->db, cualquier método de esta clase puede usarla.
         $this->db = Database::getConnection();
     }
-    //Creamos el modulo para llamar todo los datos de la tabla EMPLEADOS
-    //public function getAll():array
-    public function obtenerEmpleados():array {
-        // variable $sql para almacenar
-        $sql = "SELECT * FROM producto
-                INNER JOIN categoria 
-                ON producto.IDcategoria = categoria.IDcategoria 
-                ORDER BY producto.IDcategoria 
-                "; 
-        // statement = declaración
+
+    // ================= LISTAR PRODUCTOS =================
+    public function obtenerProductos(): array {
+        $sql = "SELECT p.*, c.nombre_categoria
+                FROM Producto p
+                INNER JOIN Categoria c ON p.IDcategoria = c.IDcategoria
+                ORDER BY p.IDproducto DESC";
+
         $stmt = $this->db->prepare($sql);
-        // Ejecutamos la declaración ($stmt)
         $stmt->execute();
-        //Retornamos los datos
         return $stmt->fetchAll();
     }
 
-    public function buscarPorQr(string $qrs){
-    $sql = "SELECT * FROM Producto WHERE qrs = ?";
-    $stmt = $this->db->prepare($sql);
-    $stmt->execute([$qrs]);
-    return $stmt->fetch();   
+    // ================= ELIMINAR PRODUCTO =================
+    public function eliminarPorIdProducto(string $id): bool {
+        $sql = "DELETE FROM Producto WHERE IDproducto = ?";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute([$id]);
+
+        return $stmt->rowCount() > 0;
     }
 
-    //Creamos un modulo para eliminar a un empleado por ID
-    public function eliminarPorIdEmpleado(String $codigo){
-        $sql = "DELETE FROM empleado WHERE id_empleado = ?"; 
-        $stmt = $this->db->prepare($sql);
-        $stmt->execute([$codigo]);
-        return $stmt;
-    }
+    // ================= GUARDAR PRODUCTO =================
+    public function guardarProducto(array $datos): array {
 
-    //Creamos un modulo para guardar empleados
-    public function guardarEmpleados(array $datos):array{
-        //Validar DNI unico
-         $sql1 = "SELECT id_empleado 
-                 FROM empleado
-                 WHERE dni = :dni";    
-        $stmt1 = $this->db->prepare($sql1);
-        $stmt1->execute(['dni' => $datos['dni']]);
-        if($stmt1->fetch()){
-            return ['ok' => false, 'mensaje' => 'Ya existe un empleado con ese DNI'];
-        }
-        //Validar Correo Unico
-        $sql2 = "SELECT id_empleado 
-                 FROM empleado
-                 WHERE correo = :correo";    
-        $stmt2 = $this->db->prepare($sql2);
-        $stmt2->execute(['correo' => $datos['correo']]);
-        if($stmt2->fetch()){
-            return ['ok' => false, 'mensaje' => 'Ya existe un empleado con ese Correo'];
-        }
+        $sql = "INSERT INTO Producto
+                (nombre, descripcion, precio_compra, precio_venta, stock_actual, qrs, IDcategoria)
+                VALUES (:n,:d,:pc,:pv,:s,:q,:c)";
 
-        //INSERTAMOS LOS DATOS
-        $sql = "INSERT INTO empleado
-                (nombre,apellido,dni,celular,correo,id_cargo)
-                VALUES(:n,:a,:d,:ce,:co,:i_c)";    
         $stmt = $this->db->prepare($sql);
+
         $stmt->execute([
-            'n'  =>  $datos['nombre'],
-            'a' => $datos['apellido'],
-            'd' => $datos['dni'],
-            'ce' => $datos['celular'],
-            'co' => $datos['correo'] ,
-            'i_c' => $datos['id_cargo']
+            'n'  => $datos['nombre'],
+            'd'  => $datos['descripcion'],
+            'pc' => $datos['precio_compra'],
+            'pv' => $datos['precio_venta'],
+            's'  => $datos['stock_actual'],
+            'q'  => $datos['qrs'],
+            'c'  => $datos['IDcategoria']
         ]);
-        return ['ok'=>true,'mensaje'=>'Empleado Registrado'];
+
+        return ['ok' => true, 'mensaje' => 'Producto registrado'];
     }
 
-    public function editarEmpleado(array $datos): array {
-        $sql1 = "SELECT id_empleado FROM empleado WHERE dni = :dni AND id_empleado != :id";
-        $stmt1 = $this->db->prepare($sql1);
-        $stmt1->execute(['dni' => $datos['dni'], 'id' => $datos['id_empleado']]);
-        if ($stmt1->fetch()) {
-            return ['ok' => false, 'mensaje' => 'Ya existe otro empleado con ese DNI'];
-        }
+    // ================= EDITAR PRODUCTO =================
+    public function editarProducto(array $datos): array {
 
-        $sql2 = "SELECT id_empleado FROM empleado WHERE correo = :correo AND id_empleado != :id";
-        $stmt2 = $this->db->prepare($sql2);
-        $stmt2->execute(['correo' => $datos['correo'], 'id' => $datos['id_empleado']]);
-        if ($stmt2->fetch()) {
-            return ['ok' => false, 'mensaje' => 'Ya existe otro empleado con ese Correo'];
-        }
+        $sql = "UPDATE Producto SET
+                nombre=:n,
+                descripcion=:d,
+                precio_compra=:pc,
+                precio_venta=:pv,
+                stock_actual=:s,
+                qrs=:q,
+                IDcategoria=:c
+                WHERE IDproducto=:id";
 
-        $sql = "UPDATE empleado SET nombre=:n, apellido=:a, dni=:d, celular=:ce, correo=:co, id_cargo=:i_c WHERE id_empleado=:id";
         $stmt = $this->db->prepare($sql);
+
         $stmt->execute([
             'n'   => $datos['nombre'],
-            'a'   => $datos['apellido'],
-            'd'   => $datos['dni'],
-            'ce'  => $datos['celular'],
-            'co'  => $datos['correo'],
-            'i_c' => $datos['id_cargo'],
-            'id'  => $datos['id_empleado']
+            'd'   => $datos['descripcion'],
+            'pc'  => $datos['precio_compra'],
+            'pv'  => $datos['precio_venta'],
+            's'   => $datos['stock_actual'],
+            'q'   => $datos['qrs'],
+            'c'   => $datos['IDcategoria'],
+            'id'  => $datos['IDproducto']
         ]);
-        return ['ok' => true, 'mensaje' => 'Empleado actualizado'];
+
+        return ['ok' => true, 'mensaje' => 'Producto actualizado'];
     }
 
+    // ================= BUSCAR POR QR =================
+    public function buscarPorQr(string $qrs){
+        $sql = "SELECT * FROM Producto WHERE qrs = ?";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute([$qrs]);
+        return $stmt->fetch();   
+    }
 }
-

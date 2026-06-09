@@ -1,34 +1,34 @@
 <?php
 require_once __DIR__ . '/../core/Controller.php';
 require_once __DIR__ . '/../models/Empleado.php';
+require_once __DIR__ . '/../models/Cargo.php';
 
-// Controlador para el módulo de empleados.
 class EmpleadosController extends Controller {
 
     public function index(): void {
         $this->reporte();
     }
 
+    // ================= LISTAR =================
     public function reporte(): void {
+
         if (!isset($_SESSION['usuario'])) {
             header("Location: " . BASE_URL . "/login");
             exit();
         }
+
         $this->soloSuperAdmin();
 
-        // Cargamos el modelo y obtenemos los datos de empleados.
-        require_once __DIR__ . '/../models/Cargo.php';
-        $modelo = new Cargo();
-        $variable_empleados = $modelo->obtenerCargos();
+        $producto = new Empleado();
+        $categoria = new Cargo();
 
-        $cargo = new Empleado();
-        $variable_cargo = $cargo->obtenerEmpleados();
+        $productos = $producto->obtenerProductos();
+        $categorias = $categoria->obtenerCargos(); // o obtenerCategorias()
 
-        // Enviamos los datos a la vista.
         $this->view('empleados/reportes', [
-            'usuario'     => $_SESSION['usuario'],
-            'empleados'   => $variable_empleados,
-            'lista_cargo' => $variable_cargo
+            'usuario'    => $_SESSION['usuario'],
+            'productos'  => $productos,
+            'categorias' => $categorias
         ]);
     }
 
@@ -36,71 +36,74 @@ class EmpleadosController extends Controller {
         $this->reporte();
     }
 
-    public function eliminar_empleado():void{
-        require_once __DIR__ . '/../models/Empleado.php'; //llamamos al models
-        $idEmpleado = $_POST['id_empleadito'];
-        $empleado = new Empleado(); //Instanciamos la clase o objeto
-        $resultado = $empleado->eliminarPorIdEmpleado($idEmpleado); 
-        //echo "ID__" . $idEmpleado;
-        header('Content-Type: application/json');
-        if($resultado){ //Si es verdadero, ejecuta esto
-            echo json_encode(['eliminar'=>true]);
-        }else{ //Si es falso, ejectura esto
-            echo json_encode(['eliminar'=>false]);
-        }
-    } 
+    // ================= ELIMINAR =================
+    public function eliminar(): void {
 
-    //EmpleadosController -> Mostrar la vista de REGISTRO+
+        $id = $_POST['id'];
+
+        $producto = new Empleado();
+        $resultado = $producto->eliminarPorIdProducto($id);
+
+        header('Content-Type: application/json');
+        echo json_encode(['eliminar' => $resultado]);
+    }
+
+    // ================= REGISTRO =================
     public function registro(): void {
-        require_once __DIR__ . '/../models/Cargo.php';
+
         if (!isset($_SESSION['usuario'])) {
             header("Location: " . BASE_URL . "/login");
             exit();
         }
-        //Instanciar el objeto del MODELO CARGO
-        $cargo = new Cargo();
-        $variable_cargo = $cargo->obtenerCargos();
-        // Enviamos los datos a la vista.
+
+        $categoria = new Cargo();
+        $categorias = $categoria->obtenerCargos();
+
         $this->view('empleados/registro', [
             'usuario' => $_SESSION['usuario'],
-            'lista_cargo' => $variable_cargo
+            'categorias' => $categorias
         ]);
     }
 
-    public function editar_empleado(): void {
-        $datos = [
-            'id_empleado' => $_POST['id_empleado'],
-            'nombre'      => $_POST['nombre'],
-            'apellido'    => $_POST['apellido'],
-            'dni'         => $_POST['dni'],
-            'celular'     => $_POST['celular'],
-            'correo'      => $_POST['correo'],
-            'id_cargo'    => $_POST['id_cargo']
-        ];
-        $empleado = new Empleado();
-        $resultado = $empleado->editarEmpleado($datos);
+    // ================= EDITAR =================
+    public function editar(): void {
+
+        $producto = new Empleado();
+
+        $resultado = $producto->editarProducto([
+            'IDproducto'     => $_POST['IDproducto'],
+            'nombre'         => $_POST['nombre'],
+            'descripcion'    => $_POST['descripcion'],
+            'precio_compra'  => $_POST['precio_compra'],
+            'precio_venta'   => $_POST['precio_venta'],
+            'stock_actual'   => $_POST['stock_actual'],
+            'qrs'            => $_POST['qrs'],
+            'IDcategoria'    => $_POST['IDcategoria']
+        ]);
+
         header('Content-Type: application/json');
-        echo json_encode($resultado);
+        echo json_encode(['ok' => $resultado]);
     }
 
-    public function guardar():void{
-        //Preparar o convertir los datos en array
-        $datos = [
-            'nombre'  =>  $_POST['nombre'],
-            'apellido' => $_POST['apellido'],
-            'dni' => $_POST['dni'],
-            'celular' => $_POST['celular'],
-            'correo' => $_POST['correo'],
-            'id_cargo' => $_POST['cargo']
-        ];
-        //Instanciar o crear el objeto
-        $empleado = new Empleado();
-        $resultado = $empleado->guardarEmpleados($datos);
-        if($resultado['ok'] == false){  //si es Verdadero
-            header('Location: '. BASE_URL .'/empleados/reporte');
-        }else{
-            header('Location: '. BASE_URL .'/empleados/registro');
+    // ================= GUARDAR =================
+    public function guardar(): void {
+
+        $producto = new Empleado();
+
+        $resultado = $producto->guardarProducto([
+            'nombre'         => $_POST['nombre'],
+            'descripcion'    => $_POST['descripcion'],
+            'precio_compra'  => $_POST['precio_compra'],
+            'precio_venta'   => $_POST['precio_venta'],
+            'stock_actual'   => $_POST['stock_actual'],
+            'qrs'            => $_POST['qrs'],
+            'IDcategoria'    => $_POST['IDcategoria']
+        ]);
+
+        if ($resultado) {
+            header('Location: ' . BASE_URL . '/empleados/reportes');
+        } else {
+            header('Location: ' . BASE_URL . '/empleados/registro');
         }
     }
-    
 }
