@@ -14,9 +14,20 @@ class DashboardController extends Controller {
             exit;
         }
 
-        // Pasamos los datos del usuario a la vista para poder mostrarlos.
+        require_once __DIR__ . '/../models/Empleado.php';
+
+        $producto = new Empleado();
+
+        $productosBajoStock = $producto->obtenerBajoStock();
+        $totalBajoStock = count($productosBajoStock);
+
+        $productosVendidos = $producto->obtenerMasVendidosHoy();
+
         $this->view('dashboard/index', [
-            'usuario' => $_SESSION['usuario']
+            'usuario' => $_SESSION['usuario'],
+            'productosBajoStock' => $productosBajoStock,
+            'totalBajoStock' => $totalBajoStock,
+            'productosVendidos' => $productosVendidos
         ]);
     }
 }

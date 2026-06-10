@@ -99,4 +99,31 @@ class Empleado {
         $stmt->execute();
         return $stmt->fetchAll();
     }
+
+    public function obtenerBajoStock(): array{
+    $sql = "SELECT nombre, stock_actual
+            FROM Producto
+            WHERE stock_actual <= 30
+            ORDER BY stock_actual ASC";
+
+    $stmt = $this->db->query($sql);
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+    public function obtenerMasVendidosHoy(): array{
+    $sql = "SELECT
+                p.nombre,
+                SUM(s.cantidad) AS total_vendido
+            FROM Salida s
+            INNER JOIN Producto p
+            ON s.IDproducto = p.IDproducto
+            WHERE s.fecha = CURDATE()
+            GROUP BY p.IDproducto,p.nombre
+            HAVING SUM(s.cantidad) >= 10
+            ORDER BY total_vendido DESC";
+
+    $stmt = $this->db->query($sql);
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
 }
