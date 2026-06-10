@@ -26,41 +26,42 @@
         </nav>
         <div class="main-content">
 
-    
 
-        <div class="container-fluid mb-4">
-    <div class="card shadow-sm border-0">
-        <div class="card-body">
-            <form method="GET" class="row g-3 align-items-end">
-                <div class="col-md-4">
-                    <label class="form-label">
-                        Filtrar por fecha
-                    </label>
+            <div class="container-fluid mb-4">
+                <?php if (empty($fecha)) : ?>
+                <?php else: ?>
 
-                    <input
-                        type="date"
-                        name="fecha"
-                        class="form-control"
-                        value="<?php echo $fecha; ?>">
+                <div class="card shadow-sm border-0">
+                    <div class="card-body">
+                        <form method="GET" class="row g-3 align-items-end">
+                            <div class="col-md-4">
+                                <label class="form-label">
+                                    Filtrar por fecha
+                                </label>
+
+                                <input
+                                    type="date"
+                                    name="fecha"
+                                    class="form-control"
+                                    value="<?php echo $fecha; ?>">
+                            </div>
+                            <div class="col-md-2">
+                                <button type="submit" class="btn btn-primary w-100">
+                                    <i class="fa-solid fa-magnifying-glass"></i>
+                                    Buscar
+                                </button>
+                            </div>
+                            <div class="col-md-2">
+                                <a href="<?php echo BASE_URL; ?>/salidas/reportes"
+                                    class="btn btn-secondary w-100">
+                                    Mostrar hoy
+                                </a>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-                <div class="col-md-2">
-                    <button type="submit" class="btn btn-primary w-100">
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                        Buscar
-                    </button>
-                </div>
-                <div class="col-md-2">
-                    <a href="<?php echo BASE_URL; ?>/salidas/reportes"
-                       class="btn btn-secondary w-100">
-                        Mostrar hoy
-                    </a>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-
-
+                <?php endif; ?>
+            </div>
 
             <div class="table-responsive">
                 <?php if (empty($lista_cargo)) : ?>
@@ -83,7 +84,7 @@
                                     <td><?php echo htmlspecialchars($cargitos['nombre']) ?></td>
                                     <td><?php echo htmlspecialchars($cargitos['fecha']) ?></td>
                                     <td><?php echo htmlspecialchars($cargitos['cantidad']) ?></td>
-                                    
+
                                 </tr>
                             <?php endforeach; ?>
                         </tbody>

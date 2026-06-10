@@ -27,6 +27,8 @@
         </nav>
 
         <div class="main-content">
+            <?php if (empty($categorias)) : ?>
+            <?php else: ?>
 
             <section class="container my-4">
 
@@ -102,6 +104,7 @@
                 </div>
 
             </section>
+            <?php endif; ?>
 
         </div>
 

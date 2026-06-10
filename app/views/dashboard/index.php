@@ -24,6 +24,10 @@
     <div class="main-content">
 
     <div class="row g-4">
+        <?php if (empty($productosBajoStock)) : ?>
+            <?php else: ?>
+                <?php if (empty($productosVendidos)) : ?>
+            <?php else: ?>
 
         <div class="col-md-6">
             <div class="card shadow-sm border-0 h-100">
@@ -37,7 +41,6 @@
                 <div class="card-body">
 
                     <h1 class="display-4 text-danger">
-                        <?php if (empty($productosBajoStock)) : ?>
                     </h1>
 
                     <ul class="list-group">
@@ -78,9 +81,10 @@
                     </ul>
 
                 </div>
-                <?php else: ?>
             </div>
         </div>
+        <?php endif; ?>
+        <?php endif; ?>
 
     </div>
 

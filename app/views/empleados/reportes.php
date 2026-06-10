@@ -109,6 +109,8 @@
         <h2 class="modal-titulo">Editar producto</h2>
 
         <form class="modal-form">
+            <?php if (empty($categorias)) : ?>
+            <?php else: ?>
 
             <input type="hidden" id="edit-id">
 
@@ -162,6 +164,7 @@
             <button type="button" class="btn-guardar-modal">
                 Guardar cambios
             </button>
+            <?php endif; ?>
 
         </form>
 
