@@ -14,11 +14,11 @@
     <!-- PANEL IZQUIERDO -->
     <div class="panel-left">
         <div class="logo">
-            <img src="<?php echo BASE_URL; ?>/public/image/senati.png" alt="Logo empresa">
+            <img src="<?php echo BASE_URL; ?>/public/img/nombre.png" alt="Logo empresa">
         </div>
 
         <div class="avatar-box">
-            <img src="<?php echo BASE_URL; ?>/public/image/foto_prueba.png" alt="Empleado">
+            <img src="<?php echo BASE_URL; ?>/public/img/carrito.png" alt="Empleado">
         </div>
 
         <p class="empleado-nombre" id="empleado-nombre">— — —</p>

@@ -16,7 +16,7 @@ body {
 
 /* ── PANEL IZQUIERDO ── */
 .panel-left {
-    background: #111;
+    background: #000000;
     color: white;
     display: flex;
     flex-direction: column;
@@ -36,7 +36,7 @@ body {
 }
 
 .logo img {
-    height: 100px;
+    height: 160px;
     object-fit: contain;
 }
 
