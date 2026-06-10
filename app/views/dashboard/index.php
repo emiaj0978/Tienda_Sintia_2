@@ -37,7 +37,7 @@
                 <div class="card-body">
 
                     <h1 class="display-4 text-danger">
-                        <?php echo $totalBajoStock; ?>
+                        <?php if (empty($productosBajoStock)) : ?>
                     </h1>
 
                     <ul class="list-group">
@@ -78,6 +78,7 @@
                     </ul>
 
                 </div>
+                <?php else: ?>
             </div>
         </div>
 
