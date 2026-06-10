@@ -144,7 +144,7 @@ clave varchar(250) not null
 
 CREATE TABLE Categoria (
     IDcategoria INT AUTO_INCREMENT PRIMARY KEY,
-    nombre_categoria VARCHAR(100) NOT NULL UNIQUE, -- constraint extra
+    nombre_categoria VARCHAR(100) NOT NULL,
     descripcion VARCHAR(255) not null
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -152,20 +152,12 @@ CREATE TABLE Producto (
     IDproducto INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(100) NOT NULL,
     descripcion VARCHAR(255) not null,
-    precio_compra DECIMAL(10,2) NOT NULL,
-    precio_venta DECIMAL(10,2) NOT NULL,
-    stock_actual INT NOT NULL DEFAULT 0, -- constraint extra (DEFAULT)
-    fecha_vencimiento timestamp default current_timestamp,
+    precio_compra varchar(20),
+    precio_venta varchar(20),
+    stock_actual int not null,
+    qrs varchar(13) unique not null,
     IDcategoria INT NOT NULL,
     FOREIGN KEY (IDcategoria) REFERENCES Categoria(IDcategoria)
-)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
-CREATE TABLE Entrada (
-    IDentrada INT AUTO_INCREMENT PRIMARY KEY,
-    fecha DATE NOT NULL,
-    cantidad INT NOT NULL,
-    IDproducto INT NOT NULL,
-    FOREIGN KEY (IDproducto) REFERENCES Producto(IDproducto) ON DELETE CASCADE
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 CREATE TABLE Salida (
@@ -210,50 +202,6 @@ INSERT INTO Producto (nombre, descripcion, precio_compra, precio_venta, stock_ac
 ('Plátano de seda', 'Plátano dulce', 1.50, 2.80, 80, '2026-12-09', 9),
 ('Pan Francés', 'Pan blanco', 1.00, 2.00, 100, '2026-12-03', 10),
 ('Queque', 'Queque marmolado', 4.00, 7.00, 30, '2026-12-15', 10);
-
-
-INSERT INTO Entrada (fecha, cantidad, IDproducto) VALUES 
-('2026-03-01', 50, 1),   
-('2026-03-02', 30, 2),   
-('2026-03-10', 100, 3),  
-('2026-03-10', 80, 4),   
-('2026-03-11', 200, 5), 
-('2026-03-11', 60, 6),  
-('2026-03-12', 50, 7), 
-('2026-03-12', 70, 8), 
-('2026-03-13', 100, 9), 
-('2026-03-13', 40, 10), 
-('2026-03-14', 30, 11), 
-('2026-03-14', 60, 12), 
-('2026-03-15', 80, 13), 
-('2026-03-15', 40, 14), 
-('2026-03-16', 50, 15), 
-('2026-03-16', 70, 16), 
-('2026-03-17', 30, 17), 
-('2026-03-17', 50, 18), 
-('2026-03-18', 25, 19); 
-
-
-INSERT INTO Salida (fecha, cantidad, IDproducto) VALUES 
-('2026-03-05', 20, 1),  
-('2026-03-06', 10, 2),   
-('2026-03-11', 20, 3), 
-('2026-03-11', 15, 4), 
-('2026-03-12', 30, 5), 
-('2026-03-12', 10, 6),  
-('2026-03-13', 8, 7),  
-('2026-03-13', 12, 8),  
-('2026-03-14', 25, 9),
-('2026-03-14', 5, 10),  
-('2026-03-15', 10, 11),
-('2026-03-15', 8, 12),  
-('2026-03-16', 15, 13), 
-('2026-03-16', 5, 14),  
-('2026-03-17', 20, 15), 
-('2026-03-17', 10, 16), 
-('2026-03-18', 5, 17),  
-('2026-03-18', 8, 18), 
-('2026-03-19', 3, 19); 
 
 INSERT INTO usuario (id_usuario, roles, nombre_usuario, clave) VALUES
 ('1', 'admin', 'emi2', 1234),
