@@ -23,7 +23,7 @@
     <div class="container">
         <!-- IZQUIERDA -->
         <div class="left">
-            <img src="https://insidercontrol.es/upload/content/gif_stati/attendance/attendance.gif" alt="Login">
+            <img src="https://cdn.pixabay.com/animation/2023/02/15/10/12/10-12-39-589_512.gif" alt="Login">
         </div>
 
         <!-- DERECHA -->
