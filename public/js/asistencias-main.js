@@ -57,7 +57,7 @@ document.addEventListener("DOMContentLoaded", () => {
           mostrarCarrito();
         } else {
           nombreProducto.textContent = "Producto no encontrado";
-          msj.textContent = "Código QR no registrado";
+          msj.textContent = "Código no registrado";
         }
       });
   }
