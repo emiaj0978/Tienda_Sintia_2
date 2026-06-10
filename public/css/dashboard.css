@@ -296,3 +296,37 @@ main {
         padding: 20px 14px;
     }
 }
+
+/* ───boton guardar-categoria ───────────────────── */
+.btn-guardar{
+    background:#a788d0;
+    color:white;
+    border:none;
+}
+
+.btn-guardar:hover{
+    background:#6d28d9;
+    color:white;
+}
+
+.header-categoria {
+    background:#6d28d9;
+    color: white;
+}
+
+/* ───boton guardar-producto ───────────────────── */
+.btn-custom {
+    background: #a788d0;
+    color: white;
+    border: none;
+}
+
+.btn-custom:hover {
+    background:#6d28d9;
+    color:white;
+}
+
+.header-producto {
+    background: #6d28d9;
+    color: white;
+}
