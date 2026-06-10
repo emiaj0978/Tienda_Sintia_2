@@ -39,7 +39,15 @@
         </div>
         <div class="mensaje" id="mensaje">
             <p id="msj"></p>
-        </div>        
+        </div>       
+        
+        <div id="lista-productos"></div>
+            <h2>Total: S/<span id="total">0.00</span></h2>
+            <button onclick="confirmarCompra()" class="btn-confirmar">
+            Confirmar Compra
+    </button>
+
+
     </div>
 
     <script>

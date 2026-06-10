@@ -33,5 +33,25 @@ class AsistenciasController extends Controller {
             'registrado' => true
         ]);
     }
+
+    public function guardarVenta(): void{
+        require_once __DIR__ . '/../models/Asistencia.php';
+        $productos = json_decode(
+        file_get_contents("php://input"),
+        true
+    );
+
+    $asistencia = new Asistencia();
+        foreach($productos as $producto){
+        $asistencia->registrar(
+        $producto['IDproducto']
+        );
+
+    }
+    header('Content-Type: application/json');
+    echo json_encode([
+        'registrado' => true
+    ]);
+    }
     
 }
