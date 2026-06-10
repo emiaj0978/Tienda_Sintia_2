@@ -10,7 +10,7 @@ html {
 
 html,
 body {
-    background: #fff;
+    background: #eafbe4;
     color: #000;
     font-family: "Poppins", system-ui, sans-serif;
     -webkit-font-smoothing: antialiased;
@@ -614,7 +614,7 @@ body {
 
 /* ── FOOTER ── */
 .footer {
-    background: #fff;
+    background: #17456c;
     border-top: 1px solid #e5e5e5;
     padding: 28px clamp(20px, 6vw, 80px);
     display: flex;
