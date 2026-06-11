@@ -218,5 +218,7 @@ El sistema debe:
 ---
 
 ## Imágenes del negocio
+![Diagrama Entidad Relacion](https://github.com/emiaj0978/TiendaSintia/blob/main/frontend/imagen/relacional(der).png)
+![Diagrama Entidad Relacion](https://github.com/emiaj0978/TiendaSintia/blob/main/frontend/imagen/relacional(der).png)
 
 ---
