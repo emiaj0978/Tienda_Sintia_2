@@ -103,10 +103,10 @@ El sistema cuenta con 4 tablas principales:
 
 
 ### Diagrama Entidad-Relacion (DER)
-![Diagrama Entidad Relacion](https://github.com/emiaj0978/TiendaSintia/blob/main/frontend/imagen/relacional(der).png)
+![Diagrama Entidad Relacion](https://github.com/emiaj0978/Tienda_Sintia_2/blob/main/public/img/relacional(der).png)
 
 ### Modelo Relacional (MR)
-![Modelo Relacional](https://github.com/emiaj0978/TiendaSintia/blob/main/frontend/imagen/entidadrelacion(mr).png)
+![Modelo Relacional](https://github.com/emiaj0978/Tienda_Sintia_2/blob/main/public/img/entidadrelacion(mr).png)
 
 ### Cardinalidades
 CATEGORIA — PRODUCTO (1:N) <br>
