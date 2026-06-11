@@ -98,7 +98,6 @@ El sistema cuenta con 4 tablas principales:
 |-------|-------------|
 | CATEGORIA | Clasificación de los productos |
 | PRODUCTO | Registro de cada producto del inventario |
-| ENTRADA | Registro de entradas de productos al almacén |
 | SALIDA | Registro de salidas de productos del almacén |
 
 ### Diagrama Entidad-Relacion (DER)
@@ -110,15 +109,12 @@ El sistema cuenta con 4 tablas principales:
 ### Cardinalidades
 CATEGORIA — PRODUCTO (1:N) <br>
 Una categoría puede tener muchos productos, pero un producto pertenece a una sola categoría. <br>
-PRODUCTO — ENTRADA (1:N) <br>
-Un producto puede tener muchas entradas, pero una entrada pertenece a un solo producto. <br>
 PRODUCTO — SALIDA (1:N) <br>
 Un producto puede tener muchas salidas, pero una salida pertenece a un solo producto.
 
 | Entidad A | Relacion | Entidad B | Cardinalidad |
 |-----------|----------|-----------|--------------|
 | CATEGORIA | contiene | PRODUCTO | 1:N |
-| PRODUCTO | genera | ENTRADA | 1:N |
 | PRODUCTO | genera | SALIDA | 1:N |
 
 
