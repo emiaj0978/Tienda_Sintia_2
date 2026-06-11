@@ -99,6 +99,8 @@ El sistema cuenta con 4 tablas principales:
 | CATEGORIA | Clasificación de los productos |
 | PRODUCTO | Registro de cada producto del inventario |
 | SALIDA | Registro de salidas de productos del almacén |
+| Usuario | Personas a la cual puenden acceder al dashboard |
+
 
 ### Diagrama Entidad-Relacion (DER)
 ![Diagrama Entidad Relacion](https://github.com/emiaj0978/TiendaSintia/blob/main/frontend/imagen/relacional(der).png)
