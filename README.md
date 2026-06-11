@@ -31,13 +31,6 @@ Solucion tecnologica: Desarrollar un sistema web con Java Spring Boot y MySQL qu
 | RF08 | El sistema debe permitir eliminar categorías |
 | RF09 | El sistema debe mostrar el listado de categorías registradas |
 
-### Gestión de Entradas de Productos
-| Código | Descripción |
-|--------|-------------|
-| RF10 | El sistema debe permitir registrar entradas de productos al almacén indicando fecha y cantidad |
-| RF11 | El sistema debe actualizar automáticamente el stock al registrar una entrada |
-| RF12 | El sistema debe mostrar el historial de entradas por producto |
-
 ### Gestión de Salidas de Productos
 | Código | Descripción |
 |--------|-------------|
@@ -95,7 +88,7 @@ Solucion tecnologica: Desarrollar un sistema web con Java Spring Boot y MySQL qu
 ---
 
 ### DIAGRAMA DE FIGMA UI/UX
-![FIGMA](https://www.figma.com/design/BhCK6tHBD2xM2IzBFCgQyl/Sin-t%C3%ADtulo?node-id=0-1&p=f&t=biuAk1qIKtQNHJ7L-0)
+![FIGMA](https://www.figma.com/design/BhCK6tHBD2xM2IzBFCgQyl/Sin-t%C3%ADtulo?node-id=0-1&t=M5tjpawWf9W9lP2X-0)
 
 ## Base de datos
 
