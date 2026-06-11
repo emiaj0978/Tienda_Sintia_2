@@ -159,7 +159,6 @@ CREATE TABLE Salida (
 
 
 INSERT INTO Categoria (nombre_categoria, descripcion) VALUES 
-('Bebidas', 'Productos líquidos'),
 ('Snacks', 'Comida rápida'),
 ('Lácteos', 'Productos derivados de la leche'),
 ('Abarrotes', 'Productos envasados no perecibles'),
@@ -169,28 +168,31 @@ INSERT INTO Categoria (nombre_categoria, descripcion) VALUES
 ('Verduras', 'Productos vegetales frescos'),
 ('Frutas', 'Frutas frescas'),
 ('Panadería', 'Productos de panadería y pastelería');
+('Bebidas', 'Productos líquidos'),
 
 
-INSERT INTO Producto (nombre, descripcion, precio_compra, precio_venta, stock_actual, fecha_vencimiento, IDcategoria) VALUES
-('Coca Cola', 'Bebida gaseosa', 2.50, 4.00, 100, '2026-12-31', 1),
-('Papas Lays', 'Snack salado', 1.00, 2.00, 50, '2026-12-31', 2),
-('Leche Gloria', 'Leche entera pasteurizada', 3.50, 5.00, 80, '2026-12-15', 3),
-('Yogur Natural', 'Yogur sin azúcar', 2.00, 3.50, 60, '2026-11-20', 3),
-('Arroz Costeño', 'Arroz extra grano', 4.00, 6.00, 200, '2027-06-01', 4),
-('Fideos Don Vittorio', 'Fideos spaghetti', 2.50, 4.00, 150, '2027-05-01', 4),
-('Aceite Primor', 'Aceite vegetal 1L', 5.00, 8.00, 100, '2027-03-01', 4),
-('Lavavajillas Marsella', 'Líquido lavavajillas', 4.00, 6.50, 40, '2027-12-31', 5),
-('Lejía Clorox', 'Blanqueador de ropa', 3.00, 5.00, 60, '2027-12-31', 5),
-('Cerveza Cristal', 'Cerveza rubia 650ml', 3.00, 5.00, 120, '2026-12-31', 6),
-('Vino Tinto', 'Vino tinto chileno', 15.00, 25.00, 30, '2028-03-01', 6),
-('Pollo Entero', 'Pollo fresco', 8.00, 12.00, 40, '2026-12-10', 7),
-('Carne Molida', 'Carne de res molida', 12.00, 18.00, 25, '2026-12-08', 7),
-('Lechuga', 'Lechuga fresca', 1.50, 2.50, 50, '2026-12-05', 8),
-('Tomate', 'Tomate riñón', 2.00, 3.50, 60, '2026-12-06', 8),
-('Manzana Delicia', 'Manzana roja', 3.00, 5.00, 45, '2026-12-12', 9),
-('Plátano de seda', 'Plátano dulce', 1.50, 2.80, 80, '2026-12-09', 9),
-('Pan Francés', 'Pan blanco', 1.00, 2.00, 100, '2026-12-03', 10),
-('Queque', 'Queque marmolado', 4.00, 7.00, 30, '2026-12-15', 10);
+
+INSERT INTO Producto (nombre, descripcion, precio_compra, precio_venta, stock_actual, qrs, IDcategoria) VALUES
+('Papas Lays', 'Snack salado', 1.00, 2.00, 50, '7751234560002', 1),
+('Leche Gloria', 'Leche entera pasteurizada', 3.50, 5.00, 80, '7751234560003', 2),
+('Yogur Natural', 'Yogur sin azúcar', 2.00, 3.50, 60, '7751234560004', 2),
+('Arroz Costeño', 'Arroz extra grano', 4.00, 6.00, 200, '7751234560005', 3),
+('Fideos Don Vittorio', 'Fideos spaghetti', 2.50, 4.00, 150, '7751234560006', 3),
+('Aceite Primor', 'Aceite vegetal 1L', 5.00, 8.00, 100, '7751234560007', 3),
+('Lavavajillas Marsella', 'Líquido lavavajillas', 4.00, 6.50, 40, '7751234560008', 4),
+('Lejía Clorox', 'Blanqueador de ropa', 3.00, 5.00, 60, '7751234560009', 4),
+('Cerveza Cristal', 'Cerveza rubia 650ml', 3.00, 5.00, 120, '7751234560010', 5),
+('Vino Tinto', 'Vino tinto chileno', 15.00, 25.00, 30, '7751234560011', 5),
+('Pollo Entero', 'Pollo fresco', 8.00, 12.00, 40, '7751234560012', 6),
+('Carne Molida', 'Carne de res molida', 12.00, 18.00, 25, '7751234560013', 6),
+('Lechuga', 'Lechuga fresca', 1.50, 2.50, 50, '7751234560014', 7),
+('Tomate', 'Tomate riñón', 2.00, 3.50, 60, '7751234560015', 7),
+('Manzana Delicia', 'Manzana roja', 3.00, 5.00, 45, '7751234560016', 8),
+('Plátano de seda', 'Plátano dulce', 1.50, 2.80, 80, '7751234560017', 8),
+('Pan Francés', 'Pan blanco', 1.00, 2.00, 100, '775salida1234560018', 9),
+('Queque', 'Queque marmolado', 4.00, 7.00, 30, '7751234560019', 9);
+('Coca Cola', 'Bebida gaseosa', 2.50, 4.00, 100, '7123456763467', 10),
+
 
 INSERT INTO usuario (id_usuario, roles, nombre_usuario, clave) VALUES
 ('1', 'admin', 'emi2', 1234),
