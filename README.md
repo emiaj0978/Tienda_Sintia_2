@@ -1,3 +1,6 @@
+Más info en [mi tablero de trello](https://trello.com/b/su8QLheY/tienda-sintia)
+![TRELLO](https://github.com/emiaj0978/Tienda_Sintia_2/blob/main/public/img/trello.png)
+
 # Sistema de Gestión de Inventario - Tienda Sintia
 Sistema web para la gestión de inventario de productos de primera necesidad, controlando stock, fechas de vencimiento y niveles de reposición. Desarrollado como proyecto final del curso de Java Web en SENATI.
 
