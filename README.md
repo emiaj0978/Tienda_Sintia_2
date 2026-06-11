@@ -214,13 +214,15 @@ El sistema debe:
 ---
 
 ## Imágenes del problema
+![Imágenes del negocio](https://github.com/emiaj0978/Tienda_Sintia_2/blob/main/public/img/prueba.png)
 
 ---
 
 ## Imágenes del negocio
+---
+![Imágenes del negocio](https://github.com/emiaj0978/Tienda_Sintia_2/blob/main/public/img/prueba.png)
 ![Imágenes del negocio](https://github.com/emiaj0978/Tienda_Sintia_2/blob/main/public/img/prueba.png)
 ---
-
 ![video del negocio](https://github.com/emiaj0978/Tienda_Sintia_2/blob/main/public/video/WhatsApp%20Video%202026-06-11%20at%2011.09.00%20AM.mp4)
 
 ---
